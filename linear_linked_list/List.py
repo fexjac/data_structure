@@ -4,57 +4,54 @@ class List:
 
     def __init__(self):
         self.head = None
+        self.counter = 0
 
-    def __len__(self):
-        return 0
-
-    def insert(self, v):
-        new_node = Node(v)
+    def insert(self, value):
+        new_node = Node(value)
 
         if self.head is None:
             self.head = new_node
+            self.counter = self.counter + 1
             return
         else:
             temp_node = self.head
-            while(temp_node.get_next() != None):
+            while(temp_node.get_next() is not None):
                 temp_node = temp_node.get_next()
             temp_node = temp_node.set_next(new_node)
+            self.counter = self.counter + 1
 
 
     def print_list(self):
-        pr = self.head
-        while pr is not None:
-            temp_print = int(pr.get_value())
+        print_item = self.head
+        while print_item is not None:
+            temp_print = int(print_item.get_value())
             print(temp_print)
-            print("->")
-            pr = pr.get_next()
+            print_item = print_item.get_next()
         print("")
 
+    def remove(self, value):
+        temp_node = self.head
+
+        if temp_node.get_value() == value:
+            self.head = temp_node.get_next()
+            self.counter = self.counter - 1
+            return True
+
+        while temp_node.get_next() is not None and temp_node.get_next().get_value() is not value:
+            temp_node = temp_node.get_next()
+
+        if temp_node.get_next() is None:
+            return False
+
+        if temp_node.get_next().get_value() is value:
+            temp_node.set_next(temp_node.get_next().get_next())
+            self.counter = self.counter - 1
+        return True
+
+    def get_counter(self):
+        return int(self.counter)
 
 '''
-    public boolean remover(int v){
-      Node prox = head;
-      if(prox.getValor() == v){
-        head = prox.getProx();
-        return true;
-      }
-
-      while(prox.getProx()!=null &&prox.getProx().getValor()!=v){
-        prox = prox.getProx();
-      }
-
-      if(prox.getProx()==null){
-        return false;
-      }
-
-      if (prox.getProx().getValor() == v){
-        prox.setProx(prox.getProx().getProx());
-      }
-      return true;
-
-    }
-
-
 
     public boolean busca(int v){
       Node pr = head;
