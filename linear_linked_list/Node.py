@@ -1,16 +1,13 @@
-class Node:
-    def __init__(self, v):
-        self._next = None
-        self._value = v
+class Node(object):
+    def __init__(self, value=None, next= None):
+        self._next = next
+        self._value = value
 
-    @property
-    def next(self):
+    def get_value(self):
+        return self._value
+
+    def get_next(self):
         return self._next
 
-    @next.setter
-    def set_next(self, n):
-        self._next = Node(n)
-
-    @property
-    def get_value(self):
-        return int(self._value)
+    def set_next(self, new_next):
+        self._next = new_next

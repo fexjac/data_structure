@@ -5,23 +5,33 @@ class List:
     def __init__(self):
         self.head = None
 
+    def __len__(self):
+        return 0
+
     def insert(self, v):
-        NewNode = Node(v)
+        new_node = Node(v)
+
         if self.head is None:
-            self.head = NewNode
+            self.head = new_node
             return
-        last = self.head
-        while(last.next):
-            last = last.next
-        last.set_next = NewNode
+        else:
+            temp_node = self.head
+            while(temp_node.get_next() != None):
+                temp_node = temp_node.get_next()
+            temp_node = temp_node.set_next(new_node)
 
-    def listprint(self):
-        print_value = self.head
-        while print_value is not None:
-            print (print_value.get_value)
-            print_value = print_value.next
 
-''''
+    def print_list(self):
+        pr = self.head
+        while pr is not None:
+            temp_print = int(pr.get_value())
+            print(temp_print)
+            print("->")
+            pr = pr.get_next()
+        print("")
+
+
+'''
     public boolean remover(int v){
       Node prox = head;
       if(prox.getValor() == v){
