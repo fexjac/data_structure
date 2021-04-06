@@ -51,6 +51,13 @@ class List:
     def get_counter(self):
         return int(self.counter)
 
+    def search(self, value):
+        temp_node = self.head
+        while temp_node is not None:
+            if temp_node.get_value() is value:
+                return True
+            temp_node = temp_node.get_next()
+        return False
 '''
 
     public boolean busca(int v){
